@@ -134,8 +134,8 @@ const HomeLayout = () => {
               </Dropdown>
             </div>
           </Header>
-          <Layout style={{ marginTop: 64 }}>
-            <Content
+          {/* <Layout style={{ marginTop: 64 }}> */}
+          {/* <Content
               style={{
                 margin: 0,
                 minHeight: 280,
@@ -145,19 +145,22 @@ const HomeLayout = () => {
                 background: "#ecf1fd",
               }}
               className="rounded-tl-3xl "
-            >
-              <div
-                style={{
-                  minHeight: "100%",
-                  overflowY: "auto",
-                  height: "calc(100vh - 88px)",
-                }}
-                className="rounded-tl-3xl overflow-hidden bg-white"
-              >
-                <Outlet />
-              </div>
-            </Content>
-          </Layout>
+            > */}
+          <div
+            style={{
+              minHeight: "100%",
+              overflowY: "auto",
+              height: "calc(100vh - 88px)",
+              marginTop: 64,
+            }}
+            className=" overflow-hidden bg-[#ecf1fd] p-2"
+          >
+            <div className="rounded-tl-3xl bg-white">
+              <Outlet />
+            </div>
+          </div>
+          {/* </Content> */}
+          {/* </Layout> */}
           <Footer
             style={{
               textAlign: "center",
