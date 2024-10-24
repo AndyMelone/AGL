@@ -53,7 +53,7 @@ export const createEmployee = async (req: Request, res: Response) => {
     const matriculeExists = await prisma.employee.findMany({
       where: {
         matricule: { equals: matricule },
-        company: { id: req.company },
+        MarketPlace: { id: req.company },
       },
     });
 
@@ -68,7 +68,7 @@ export const createEmployee = async (req: Request, res: Response) => {
     const employeeExists = await prisma.employee.findMany({
       where: {
         email: email,
-        company: { id: req.company },
+        MarketPlace: { id: req.company },
         matricule: matricule,
       },
     });
@@ -85,7 +85,7 @@ export const createEmployee = async (req: Request, res: Response) => {
     if (!admin) {
       await prisma.employee.create({
         data: {
-          company: { connect: { id: req.company } },
+          MarketPlace: { connect: { id: req.company } },
           matricule: matricule,
           flag: imageBuffer,
           firstName: firstName,
@@ -116,7 +116,7 @@ export const createEmployee = async (req: Request, res: Response) => {
     } else {
       await prisma.employee.create({
         data: {
-          company: { connect: { id: req.company } },
+          MarketPlace: { connect: { id: req.company } },
           matricule: matricule,
           flag: imageBuffer,
           firstName: firstName,
@@ -165,15 +165,13 @@ export const getEmployees = async (req: Request, res: Response) => {
   try {
     const employees = await prisma.employee.findMany({
       where: {
-        companyId: req.company,
+        MarketPlaceId: req.company,
       },
       include: {
         position: true,
         department: true,
         Breaks: true,
         attendances: true,
-        contracts: true,
-        documents: true,
         leaves: true,
         managedDepartments: true,
         notifications: true,
@@ -210,7 +208,7 @@ export const deleteEmployee = async (req: Request, res: Response) => {
     const employeeExists = await prisma.employee.findUnique({
       where: {
         id: id,
-        company: { id: req.company },
+        MarketPlace: { id: req.company },
       },
     });
 
@@ -245,7 +243,6 @@ export const deleteEmployee = async (req: Request, res: Response) => {
 
 export const login = async (req: Request, res: Response) => {
   const { pseudo, password, matricule } = req.body;
-  console.log("ok");
   try {
     if ((!pseudo || !password) && !matricule) {
       return res.json({

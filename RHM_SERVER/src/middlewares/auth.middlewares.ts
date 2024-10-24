@@ -49,7 +49,7 @@ export async function checkAuth(
       throw new Error("You are not authenticated");
     }
     req.user = user;
-    req.company = user.companyId;
+    req.company = user.MarketPlaceId;
     next();
   } catch (e: any) {
     res.json({

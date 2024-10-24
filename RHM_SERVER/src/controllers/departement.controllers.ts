@@ -6,9 +6,9 @@ const prisma = new PrismaClient();
 
 export const createDepartement = async (req: Request, res: Response) => {
   try {
-    const { name, managerId, location, budget, description } = req.body;
+    const { name, managerId, location, description } = req.body;
 
-    if(!name) {
+    if (!name) {
       return res.status(400).json({
         ok: false,
         message: "Veuillez renseigner le nom du departement",
@@ -18,7 +18,7 @@ export const createDepartement = async (req: Request, res: Response) => {
 
     const departementExist = await prisma.department.findFirst({
       where: {
-        companyId: req.company,
+        MarketPlaceId: req.company,
         name: name,
       },
     });
@@ -34,11 +34,10 @@ export const createDepartement = async (req: Request, res: Response) => {
 
     const departement = await prisma.department.create({
       data: {
-        companyId: req.company,
+        MarketPlaceId: req.company,
         name: name,
         managerId: managerId,
         location: location,
-        budget: budget,
         description: description,
         createdBy: req.user.id,
       },
@@ -63,7 +62,7 @@ export const getDepartements = async (req: Request, res: Response) => {
   try {
     const departements = await prisma.department.findMany({
       where: {
-        companyId: req.company,
+        MarketPlaceId: req.company,
       },
       include: {
         employees: true,
@@ -94,7 +93,7 @@ export const getDepartement = async (req: Request, res: Response) => {
     const departementExists = await prisma.department.findFirst({
       where: {
         id: id,
-        companyId: req.company,
+        MarketPlaceId: req.company,
       },
       include: {
         employees: true,
@@ -129,12 +128,12 @@ export const getDepartement = async (req: Request, res: Response) => {
 export const updateDepartement = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const { name, managerId, location, budget, description } = req.body;
+    const { name, managerId, location, description } = req.body;
 
     const departementExists = await prisma.department.findFirst({
       where: {
         id: id,
-        companyId: req.company,
+        MarketPlaceId: req.company,
       },
     });
 
@@ -149,13 +148,12 @@ export const updateDepartement = async (req: Request, res: Response) => {
     const departement = await prisma.department.update({
       where: {
         id: id,
-        companyId: req.company,
+        MarketPlaceId: req.company,
       },
       data: {
         name: name,
         managerId: managerId,
         location: location,
-        budget: budget,
         description: description,
       },
     });
@@ -182,7 +180,7 @@ export const deleteDepartement = async (req: Request, res: Response) => {
     const departementExists = await prisma.department.findUnique({
       where: {
         id: id,
-        companyId: req.company,
+        MarketPlaceId: req.company,
       },
     });
 
@@ -198,7 +196,7 @@ export const deleteDepartement = async (req: Request, res: Response) => {
       await prisma.employee.deleteMany({
         where: {
           departmentId: id,
-          companyId: req.company,
+          MarketPlaceId: req.company,
         },
       });
     }
@@ -212,7 +210,7 @@ export const deleteDepartement = async (req: Request, res: Response) => {
     await prisma.department.delete({
       where: {
         id: id,
-        companyId: req.company,
+        MarketPlaceId: req.company,
       },
     });
 
@@ -239,7 +237,7 @@ export const addEmployeeToDepartement = async (req: Request, res: Response) => {
     const departementExists = await prisma.department.findFirst({
       where: {
         id: id,
-        companyId: req.company,
+        MarketPlaceId: req.company,
       },
     });
 
@@ -254,7 +252,7 @@ export const addEmployeeToDepartement = async (req: Request, res: Response) => {
     const employeeExists = await prisma.employee.findFirst({
       where: {
         id: employeeId,
-        companyId: req.company,
+        MarketPlaceId: req.company,
       },
     });
 

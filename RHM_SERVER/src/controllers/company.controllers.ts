@@ -37,7 +37,7 @@ export const createCompany = async (req: Request, res: Response) => {
       });
     }
 
-    const companyExists = await prisma.company.findFirst({
+    const companyExists = await prisma.marketPlace.findFirst({
       where: {
         contactEmail: contactEmail,
       },
@@ -51,10 +51,9 @@ export const createCompany = async (req: Request, res: Response) => {
       });
     }
 
-    const company = await prisma.company.create({
+    const company = await prisma.marketPlace.create({
       data: {
         name: name,
-        industry: industry,
         address: address,
         contactEmail: contactEmail,
         contactPhone: contactPhone,
@@ -67,14 +66,6 @@ export const createCompany = async (req: Request, res: Response) => {
       },
     });
 
-    const roleCreated = await prisma.role.create({
-      data: {
-        name: "Admin",
-        companyId: company.id,
-        createdBy: "Admin",
-      },
-    });
-
     const adminCreated = await prisma.employee.create({
       data: {
         email: admin.email,
@@ -82,15 +73,10 @@ export const createCompany = async (req: Request, res: Response) => {
         lastName: admin.lastName,
         matricule: admin.matricule,
         createdBy: company.id,
-        admin  : true,
-        role: {
-          connect: {
-            id: roleCreated.id,
-          },
-        },
+        admin: true,
         pseudo: admin.pseudo,
         password: await hash(admin.password, 10),
-        company: {
+        MarketPlace: {
           connect: {
             id: company.id,
           },
@@ -119,7 +105,7 @@ export const createCompany = async (req: Request, res: Response) => {
 
 export const getCompanies = async (req: Request, res: Response) => {
   try {
-    const companies = await prisma.company.findMany();
+    const companies = await prisma.marketPlace.findMany();
     res.status(200).json({
       ok: true,
       message: "Companies fetched successfully",
@@ -170,7 +156,7 @@ export const editCompany = async (req: Request, res: Response) => {
       });
     }
 
-    const companyExists = await prisma.company.findFirst({
+    const companyExists = await prisma.marketPlace.findFirst({
       where: {
         contactEmail: contactEmail,
       },
@@ -184,13 +170,12 @@ export const editCompany = async (req: Request, res: Response) => {
       });
     }
 
-    const company = await prisma.company.update({
+    const company = await prisma.marketPlace.update({
       where: {
         id: id,
       },
       data: {
         name: name,
-        industry: industry,
         address: address,
         contactEmail: contactEmail,
         contactPhone: contactPhone,
@@ -225,107 +210,52 @@ export const deleteCompany = async (req: Request, res: Response) => {
       prisma.attendance.deleteMany({
         where: {
           employee: {
-            companyId: id,
+            MarketPlaceId: id,
           },
         },
       }),
       prisma.leaves.deleteMany({
         where: {
           employee: {
-            companyId: id,
-          },
-        },
-      }),
-      prisma.payroll.deleteMany({
-        where: {
-          employee: {
-            companyId: id,
-          },
-        },
-      }),
-      prisma.performanceReview.deleteMany({
-        where: {
-          employee: {
-            companyId: id,
-          },
-        },
-      }),
-      prisma.notification.deleteMany({
-        where: {
-          employee: {
-            companyId: id,
-          },
-        },
-      }),
-      prisma.employeeDocument.deleteMany({
-        where: {
-          employee: {
-            companyId: id,
-          },
-        },
-      }),
-      prisma.performanceGoal.deleteMany({
-        where: {
-          employee: {
-            companyId: id,
-          },
-        },
-      }),
-      prisma.workHours.deleteMany({
-        where: {
-          employee: {
-            companyId: id,
-          },
-        },
-      }),
-      prisma.contract.deleteMany({
-        where: {
-          employee: {
-            companyId: id,
-          },
-        },
-      }),
-      prisma.employee.deleteMany({
-        where: {
-          companyId: id,
-        },
-      }),
-      prisma.department.deleteMany({
-        where: {
-          companyId: id,
-        },
-      }),
-      prisma.training.deleteMany({
-        where: {
-          companyId: id,
-        },
-      }),
-      prisma.companyFeature.deleteMany({
-        where: {
-          companyId: id,
-        },
-      }),
-      prisma.jobApplication.deleteMany({
-        where: {
-          companyId: id,
-        },
-      }),
-      prisma.employee.deleteMany({
-        where: {
-          companyId: id,
-        },
-      }),
-      prisma.role.deleteMany({
-        where: {
-          employees: {
-            some: {
-              companyId: id,
-            },
+            MarketPlaceId: id,
           },
         },
       }),
 
-      prisma.company.delete({
+      prisma.notification.deleteMany({
+        where: {
+          employee: {
+            MarketPlaceId: id,
+          },
+        },
+      }),
+
+      prisma.workHours.deleteMany({
+        where: {
+          employee: {
+            MarketPlaceId: id,
+          },
+        },
+      }),
+
+      prisma.employee.deleteMany({
+        where: {
+          MarketPlaceId: id,
+        },
+      }),
+      prisma.department.deleteMany({
+        where: {
+          MarketPlaceId: id,
+        },
+      }),
+
+      prisma.employee.deleteMany({
+        where: {
+          MarketPlaceId: id,
+        },
+      }),
+
+      prisma.marketPlace.delete({
         where: {
           id: id,
         },
@@ -350,7 +280,7 @@ export const deleteCompany = async (req: Request, res: Response) => {
 export const getCompany = async (req: Request, res: Response) => {
   const { id } = req.params;
   try {
-    const company = await prisma.company.findUnique({
+    const company = await prisma.marketPlace.findUnique({
       where: {
         id: id,
       },

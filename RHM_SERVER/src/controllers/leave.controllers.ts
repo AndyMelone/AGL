@@ -38,7 +38,7 @@ export const getLeaves = async (req: Request, res: Response) => {
     const leave = await prisma.leaves.findMany({
       where: {
         employee: {
-          companyId: req.company,
+          MarketPlaceId: req.company,
         },
       },
       include: {
@@ -69,7 +69,7 @@ export const getLeave = async (req: Request, res: Response) => {
       where: {
         id: id,
         employee: {
-          companyId: req.company,
+          MarketPlaceId: req.company,
         },
       },
     });
@@ -86,7 +86,7 @@ export const getLeave = async (req: Request, res: Response) => {
       where: {
         id: id,
         employee: {
-          companyId: req.company,
+          MarketPlaceId: req.company,
         },
       },
       include: {
@@ -114,7 +114,7 @@ export const getleavePending = async (req: Request, res: Response) => {
     const leave = await prisma.leaves.findMany({
       where: {
         employee: {
-          companyId: req.company,
+          MarketPlaceId: req.company,
         },
         status: "En attente",
       },
@@ -136,7 +136,7 @@ export const getleavePending = async (req: Request, res: Response) => {
       data: null,
     });
   }
-}
+};
 
 export const updateLeave = async (req: Request, res: Response) => {
   try {
@@ -147,7 +147,7 @@ export const updateLeave = async (req: Request, res: Response) => {
       where: {
         id: id,
         employee: {
-          companyId: req.company,
+          MarketPlaceId: req.company,
         },
       },
     });
@@ -194,7 +194,7 @@ export const deleteLeave = async (req: Request, res: Response) => {
       where: {
         id: id,
         employee: {
-          companyId: req.company,
+          MarketPlaceId: req.company,
         },
       },
     });
@@ -243,7 +243,7 @@ export const approveLeave = async (req: Request, res: Response) => {
       where: {
         id: id,
         employee: {
-          companyId: req.company,
+          MarketPlaceId: req.company,
         },
       },
     });
@@ -263,8 +263,8 @@ export const approveLeave = async (req: Request, res: Response) => {
       data: {
         status: "APROUVE",
         approvalDate: new Date(),
-        startDate : req.body.startDate,
-        endDate : req.body.endDate,
+        startDate: req.body.startDate,
+        endDate: req.body.endDate,
       },
     });
 
@@ -298,7 +298,7 @@ export const rejectLeave = async (req: Request, res: Response) => {
       where: {
         id: id,
         employee: {
-          companyId: req.company,
+          MarketPlaceId: req.company,
         },
       },
     });

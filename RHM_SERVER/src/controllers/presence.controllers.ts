@@ -22,7 +22,7 @@ export const makePresence = async (req: Request, res: Response) => {
       });
     }
 
-    // if (!employee || employee.companyId !== req.company) {
+    // if (!employee || employee.MarketPlaceId !== req.company) {
     //   return res.status(404).json({
     //     ok: false,
     //     message: "Employé non trouvé",
@@ -220,7 +220,7 @@ export const getPresenceList = async (req: Request, res: Response) => {
     const presence = await prisma.attendance.findMany({
       where: {
         employee: {
-          companyId: req.company,
+          MarketPlaceId: req.company,
         },
       },
       include: {

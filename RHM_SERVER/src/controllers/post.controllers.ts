@@ -9,7 +9,7 @@ export const createPost = async (req: Request, res: Response) => {
     const { title, description, departmentId, responsibilities, requirements } =
       req.body;
 
-      console.log(req.body)
+    console.log(req.body);
 
     const postExist = await prisma.position.findMany({
       where: {
@@ -17,7 +17,7 @@ export const createPost = async (req: Request, res: Response) => {
         departmentId: departmentId,
         employees: {
           some: {
-            companyId: req.company,
+            MarketPlaceId: req.company,
           },
         },
       },
@@ -35,10 +35,10 @@ export const createPost = async (req: Request, res: Response) => {
       data: {
         title: title,
         description: description,
-        department : {
-          connect: { id: departmentId }
+        department: {
+          connect: { id: departmentId },
         },
-        responsibilities:JSON.stringify(responsibilities) ,
+        responsibilities: JSON.stringify(responsibilities),
         requirements: JSON.stringify(requirements),
         createdBy: req.user.id,
       },
@@ -64,7 +64,7 @@ export const getPosts = async (req: Request, res: Response) => {
     const posts = await prisma.position.findMany({
       where: {
         department: {
-          companyId: req.company,
+          MarketPlaceId: req.company,
         },
       },
       include: {
@@ -95,7 +95,7 @@ export const getPost = async (req: Request, res: Response) => {
       where: {
         id: id,
         department: {
-          companyId: req.company,
+          MarketPlaceId: req.company,
         },
       },
     });
@@ -143,7 +143,7 @@ export const updatePost = async (req: Request, res: Response) => {
       where: {
         id: id,
         department: {
-          companyId: req.company,
+          MarketPlaceId: req.company,
         },
       },
     });
@@ -192,7 +192,7 @@ export const deletePost = async (req: Request, res: Response) => {
       where: {
         id: id,
         department: {
-          companyId: req.company,
+          MarketPlaceId: req.company,
         },
       },
     });

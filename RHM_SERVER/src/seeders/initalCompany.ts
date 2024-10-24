@@ -5,12 +5,11 @@ const prisma = new PrismaClient();
 
 export const seedCompany = async () => {
   try {
-    const companyCount = await prisma.company.count();
+    const companyCount = await prisma.marketPlace.count();
     if (companyCount === 0) {
-      const newCompany = await prisma.company.create({
+      const newCompany = await prisma.marketPlace.create({
         data: {
           name: "Loutché",
-          industry: "Technology",
           address: "Abidjan Youpougon magasin",
           contactEmail: "Loutche@loutche.com",
           contactPhone: "0768101008",
@@ -22,19 +21,12 @@ export const seedCompany = async () => {
           logo: null,
         },
       });
-      const roleCreated = await prisma.role.create({
-        data: {
-          name: "Admin",
-          companyId: newCompany.id,
-          createdBy: "System",
-        },
-      });
+
       const departemenrtCreated = await prisma.department.create({
         data: {
           name: "INFORMATIQUE",
-          companyId: newCompany.id,
+          MarketPlaceId: newCompany.id,
           description: "Departement informatique",
-          budget: "1000000 FCFA",
           location: "Abidjan",
           createdBy: "System",
         },
@@ -42,9 +34,8 @@ export const seedCompany = async () => {
       const departemenrtCreated2 = await prisma.department.create({
         data: {
           name: "RH",
-          companyId: newCompany.id,
+          MarketPlaceId: newCompany.id,
           description: "Departement RH",
-          budget: "1000000 FCFA",
           location: "Abidjan",
           createdBy: "System",
         },
@@ -58,7 +49,7 @@ export const seedCompany = async () => {
           dateOfBirth: new Date().toISOString(),
           address: "Abidjan",
           phoneNumber: "0768101008",
-          companyId: newCompany.id,
+          MarketPlaceId: newCompany.id,
           departmentId: null,
           comments: "Ce commentaire est pour l'employe",
           createdBy: "System",
@@ -66,7 +57,6 @@ export const seedCompany = async () => {
           emergencyContactPhone: "0768101008",
           admin: true,
           password: await hash("admin", 10),
-          roleId: roleCreated.id,
           pseudo: "admin",
           matricule: "admin",
         },
