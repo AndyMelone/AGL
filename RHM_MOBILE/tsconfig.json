@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "typeRoots": ["./node_modules/@types", "./types"]
+  },
+  "extends": ["expo/tsconfig.base","@tsconfig/react-native/tsconfig.json"],
+  "compileurOptions": {
+    "strict": true,
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}

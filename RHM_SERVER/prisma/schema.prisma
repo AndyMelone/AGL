@@ -1,0 +1,173 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model MarketPlace {
+  id                    String       @id @default(uuid())
+  name                  String
+  address               String
+  contactEmail          String       @unique
+  contactPhone          String
+  licenseType           String?
+  maxEmployees          Int
+  subscriptionStartDate String
+  subscriptionEndDate   String?
+  website               String?
+  logo                  String?
+  employees             Employee[]
+  departments           Department[]
+  createdAt             DateTime     @default(now())
+  updatedAt             DateTime     @updatedAt
+}
+
+model Employee {
+  id                       String         @id @default(uuid())
+  flag                     Bytes?
+  matricule                String?        @unique
+  MarketPlaceId            String?
+  pseudo                   String?        @unique
+  firstName                String
+  lastName                 String
+  admin                    Boolean        @default(false)
+  dateOfBirth              String?
+  placeOfBirth             String?
+  phoneNumber              String?
+  email                    String         @unique
+  address                  String?
+  gender                   String?
+  departmentId             String?
+  positionId               String?
+  contractType             String?
+  salary                   String?
+  socialSecurityNumber     String?
+  emergencyContactName     String?
+  emergencyContactlastName String?
+  emergencyContactEmail    String?
+  emergencyContactPhone    String?
+  emergencyContactAdress   String?
+  comments                 String?
+  roleId                   String?
+  status                   String         @default("Active")
+  createdAt                DateTime       @default(now())
+  updatedAt                DateTime       @updatedAt
+  createdBy                String?
+  password                 String
+  MarketPlace              MarketPlace?   @relation(fields: [MarketPlaceId], references: [id])
+  position                 Position?      @relation(fields: [positionId], references: [id])
+  department               Department?    @relation(fields: [departmentId], references: [id])
+  leaves                   Leaves[]
+  attendances              Attendance[]
+  notifications            Notification[]
+  workHours                WorkHours[]
+  managedDepartments       Department[]   @relation("DepartmentManager")
+  Breaks                   Break[]
+}
+
+model Leaves {
+  id              String    @id @default(uuid())
+  employeeId      String
+  leaveType       String
+  startDate       DateTime?
+  reason          String?
+  endDate         DateTime?
+  status          String    @default("En attente")
+  approvalDate    DateTime?
+  rejectionDate   DateTime?
+  rejectionReason String?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  employee        Employee  @relation(fields: [employeeId], references: [id])
+}
+
+model Department {
+  id            String      @id @default(uuid())
+  MarketPlaceId String
+  name          String
+  managerId     String?
+  location      String?
+  description   String?
+  employees     Employee[]
+  manager       Employee?   @relation("DepartmentManager", fields: [managerId], references: [id])
+  MarketPlace   MarketPlace @relation(fields: [MarketPlaceId], references: [id])
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  createdBy     String?
+  Position      Position[]
+}
+
+model Position {
+  id               String     @id @default(uuid())
+  title            String
+  description      String?
+  departmentId     String
+  responsibilities Json?
+  requirements     Json?
+  employees        Employee[]
+  department       Department @relation(fields: [departmentId], references: [id])
+  createdAt        DateTime   @default(now())
+  updatedAt        DateTime   @updatedAt
+  createdBy        String?
+}
+
+model Break {
+  id           String    @id @default(uuid())
+  employeeId   String
+  attendanceId String
+  date         DateTime  @default(now()) @db.Date
+  Break        DateTime? @default(now()) @db.Time
+  EndBreak     DateTime? @db.Time
+  notes        String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  createdBy String?
+
+  employee   Employee   @relation(fields: [employeeId], references: [id])
+  attendance Attendance @relation(fields: [attendanceId], references: [id])
+}
+
+model Attendance {
+  id           String    @id @default(uuid())
+  employeeId   String
+  date         DateTime  @default(now()) @db.Date
+  checkInTime  DateTime  @default(now()) @db.Time()
+  checkOutTime DateTime? @db.Time
+  location     String?
+  notes        String?
+  employee     Employee  @relation(fields: [employeeId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  createdBy String?
+  Breaks    Break[]
+}
+
+model WorkHours {
+  id            String   @id @default(uuid())
+  employeeId    String
+  date          DateTime
+  hoursWorked   Float
+  hourlyRate    Float
+  totalPay      Float
+  overtimeHours Float?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  createdBy     String?
+  employee      Employee @relation(fields: [employeeId], references: [id])
+}
+
+model Notification {
+  id         String   @id @default(uuid())
+  employeeId String
+  message    String
+  read       Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  createdBy  String?
+  employee   Employee @relation(fields: [employeeId], references: [id])
+}

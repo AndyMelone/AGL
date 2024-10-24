@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Calque_1" data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 267.16 495.72">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #1d1d1b;
+        font-family: FONTSPRINGDEMO-SingolareStencilBlackRegular, 'FONTSPRING DEMO - Singolare Stencil Black';
+        font-size: 72px;
+      }
+
+      .cls-2 {
+        stroke: #1d1d1b;
+        stroke-miterlimit: 10;
+      }
+    </style>
+  </defs>
+  <path class="cls-2" d="M62.96,163.1h0v188.43c0,32.97-26.77,59.74-59.74,59.74h0v-188.43c0-32.97,26.77-59.74,59.74-59.74Z"/>
+  <path class="cls-2" d="M165.81,290.42h0v128.99c0,32.97-26.77,59.74-59.74,59.74h0v-128.99c0-32.97,26.77-59.74,59.74-59.74Z"/>
+  <path class="cls-2" d="M165.81,68.97h0v128.99c0,32.97-26.77,59.74-59.74,59.74h0v-128.99c0-32.97,26.77-59.74,59.74-59.74Z"/>
+  <path class="cls-2" d="M266.66,163.1h0v188.43c0,32.97-26.77,59.74-59.74,59.74h0v-188.43c0-32.97,26.77-59.74,59.74-59.74Z"/>
+  <text class="cls-1" transform="translate(122.91 60.8)"><tspan x="0" y="0">H</tspan></text>
+  <text class="cls-1" transform="translate(0 479.16)"><tspan x="0" y="0">R</tspan></text>
+  <text class="cls-1" transform="translate(206.92 479.16)"><tspan x="0" y="0">M</tspan></text>
+</svg>
