@@ -66,6 +66,8 @@ model Employee {
   workHours                WorkHours[]
   managedDepartments       Department[]   @relation("DepartmentManager")
   Breaks                   Break[]
+  Sale                     Sale[]
+  Inventory                Inventory[]
 }
 
 model Leaves {
@@ -131,6 +133,7 @@ model Break {
   attendance Attendance @relation(fields: [attendanceId], references: [id])
 }
 
+// presence par jour
 model Attendance {
   id           String    @id @default(uuid())
   employeeId   String
@@ -170,4 +173,118 @@ model Notification {
   updatedAt  DateTime @updatedAt
   createdBy  String?
   employee   Employee @relation(fields: [employeeId], references: [id])
+}
+
+model Product {
+  id             String    @id @default(uuid())
+  name           String
+  description    String?
+  price          Float
+  quantity       Int
+  reorderLevel   Int
+  categoryId     String
+  supplierId     String
+  barcode        String    @unique
+  expirationDate DateTime?
+
+  category      Category        @relation(fields: [categoryId], references: [id])
+  supplier      Supplier        @relation(fields: [supplierId], references: [id])
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  OrderItem     OrderItem[]
+  SaleItem      SaleItem[]
+  InventoryItem InventoryItem[]
+}
+
+model Category {
+  id          String    @id @default(uuid())
+  name        String
+  description String?
+  products    Product[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Supplier {
+  id          String    @id @default(uuid())
+  name        String
+  contactName String?
+  phone       String?
+  email       String?
+  address     String?
+  products    Product[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  Order       Order[]
+}
+
+// bon de commande
+model Order {
+  id          String   @id @default(uuid())
+  supplierId  String
+  orderDate   DateTime @default(now())
+  totalAmount Float
+  status      String   @default("Pending")
+
+  supplier   Supplier    @relation(fields: [supplierId], references: [id])
+  orderItems OrderItem[]
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+}
+
+model OrderItem {
+  id        String @id @default(uuid())
+  orderId   String
+  productId String
+  quantity  Int
+  unitPrice Float
+
+  order   Order   @relation(fields: [orderId], references: [id])
+  product Product @relation(fields: [productId], references: [id])
+}
+
+model Sale {
+  id          String   @id @default(uuid())
+  employeeId  String?
+  saleDate    DateTime @default(now())
+  totalAmount Float
+
+  employee  Employee?  @relation(fields: [employeeId], references: [id])
+  saleItems SaleItem[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+model SaleItem {
+  id        String @id @default(uuid())
+  saleId    String
+  productId String
+  quantity  Int
+  unitPrice Float
+
+  sale    Sale    @relation(fields: [saleId], references: [id])
+  product Product @relation(fields: [productId], references: [id])
+}
+
+model Inventory {
+  id            String   @id @default(uuid())
+  employeeId    String?
+  inventoryDate DateTime @default(now())
+  comments      String?
+
+  employee       Employee?       @relation(fields: [employeeId], references: [id])
+  inventoryItems InventoryItem[]
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+}
+
+model InventoryItem {
+  id          String @id @default(uuid())
+  inventoryId String
+  productId   String
+  counted     Int
+  difference  Int?
+
+  inventory Inventory @relation(fields: [inventoryId], references: [id])
+  product   Product   @relation(fields: [productId], references: [id])
 }
