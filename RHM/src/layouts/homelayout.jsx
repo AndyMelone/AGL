@@ -15,7 +15,7 @@ import { IoMdNotificationsOutline } from "react-icons/io";
 import { IoCalendarOutline } from "react-icons/io5";
 import { dropDownMenuItems } from "../helpers/DropdonwAvatarList";
 
-const { Header, Footer, Sider } = Layout;
+const { Header, Sider } = Layout;
 
 const HomeLayout = () => {
   const [collapsed, setCollapsed] = useState(true);
@@ -105,7 +105,7 @@ const HomeLayout = () => {
             }}
             className="flex items-center px-4"
           >
-            <p className="font-medium text-base text-gray-500">SmartMarket</p>
+            <p className="font-medium text-base text-gray-500">LOUTCHE</p>
 
             <div className="ml-auto flex items-center gap-5 mx-10">
               <p className="text-blue-950">Aide</p>
@@ -134,18 +134,7 @@ const HomeLayout = () => {
               </Dropdown>
             </div>
           </Header>
-          {/* <Layout style={{ marginTop: 64 }}> */}
-          {/* <Content
-              style={{
-                margin: 0,
-                minHeight: 280,
-                overflow: "hidden",
-                position: "relative",
 
-                background: "#ecf1fd",
-              }}
-              className="rounded-tl-3xl "
-            > */}
           <div
             style={{
               minHeight: "100%",
@@ -159,21 +148,6 @@ const HomeLayout = () => {
               <Outlet />
             </div>
           </div>
-          {/* </Content> */}
-          {/* </Layout> */}
-          <Footer
-            style={{
-              textAlign: "center",
-              background: "#ecf1fd",
-              transition: "bottom 0.3s",
-              height: "10px",
-              position: "fixed",
-              width: `calc(100% - ${collapsed ? 80 : 200}px)`,
-              bottom: scrollDirection === "down" ? "-64px" : "0",
-            }}
-          >
-            MELDO ©{new Date().getFullYear()} Created by Melone
-          </Footer>
         </Layout>
       </Layout>
     </ConfigProvider>

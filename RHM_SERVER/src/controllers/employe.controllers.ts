@@ -32,7 +32,7 @@ export const createEmployee = async (req: Request, res: Response) => {
     emergencyContactAdress,
     admin,
   } = req.body;
-
+  console.log("ok");
   try {
     if (!firstName || !lastName || !dateOfBirth || !gender) {
       return res.json({
@@ -111,6 +111,7 @@ export const createEmployee = async (req: Request, res: Response) => {
           comments: comments,
           createdBy: req.user.id,
           password: await hash(matricule, 10),
+          pseudo: matricule,
         },
       });
     } else {
@@ -143,6 +144,7 @@ export const createEmployee = async (req: Request, res: Response) => {
           createdBy: req.user.id,
           admin: true,
           password: await hash(matricule, 10),
+          pseudo: matricule,
         },
       });
     }
@@ -243,6 +245,7 @@ export const deleteEmployee = async (req: Request, res: Response) => {
 
 export const login = async (req: Request, res: Response) => {
   const { pseudo, password, matricule } = req.body;
+  console.log("req.body", req.body);
   try {
     if ((!pseudo || !password) && !matricule) {
       return res.json({
@@ -400,6 +403,61 @@ export const createTask = async (req: Request, res: Response) => {
       ok: true,
       message: "Task created successfully",
       data: task,
+    });
+  } catch (error: any) {
+    console.log(error);
+    return res.status(500).json({
+      ok: false,
+      message: error.message,
+      data: null,
+    });
+  }
+};
+
+export const getEmployeeById = async (req: Request, res: Response) => {
+  const { id } = req.params;
+
+  try {
+    if (!id) {
+      return res.json({
+        ok: false,
+        message: "Veuillez renseigner l'identifiant de l'employé",
+        data: null,
+      });
+    }
+
+    const employee = await prisma.employee.findUnique({
+      where: {
+        id: id,
+        MarketPlace: { id: req.company },
+      },
+      include: {
+        position: true,
+        department: true,
+        Breaks: true,
+        attendances: true,
+        leaves: true,
+        managedDepartments: true,
+        notifications: true,
+        Inventory: true,
+        tasks: true,
+        MarketPlace: true,
+        workHours: true,
+      },
+    });
+
+    if (!employee) {
+      return res.json({
+        ok: false,
+        message: "Employee not found",
+        data: null,
+      });
+    }
+
+    return res.status(200).json({
+      ok: true,
+      message: "Employee fetched successfully",
+      data: employee,
     });
   } catch (error: any) {
     console.log(error);

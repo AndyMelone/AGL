@@ -13,6 +13,7 @@ employeRouter.post("/create-task", employe.createTask);
 
 // GET REQUEST
 employeRouter.get("/", employe.getEmployees);
+employeRouter.get("/:id", employe.getEmployeeById);
 
 //DELETE REQUEST
 employeRouter.delete("/:id", employe.deleteEmployee);

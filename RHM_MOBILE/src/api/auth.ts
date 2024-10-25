@@ -4,9 +4,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import useAuthStore from "../store/store_auth";
 
-
 interface Tokens {
-  token: { accessToken: any; refreshToken: any; };
+  token: { accessToken: any; refreshToken: any };
   message: string;
   data: any;
 }
@@ -16,6 +15,7 @@ export const loginApi = async (
   password: string
 ): Promise<AxiosResponse<Tokens>> => {
   try {
+    console.log("Login API");
     const response: AxiosResponse<Tokens> = await api.post("/auth/login", {
       matricule,
       password,
@@ -24,11 +24,10 @@ export const loginApi = async (
     if (response.status === 200) {
       const { accessToken, refreshToken } = response.data.token;
 
-      const { login } = useAuthStore.getState(); 
-      await login(response.data.data , accessToken);
+      const { login } = useAuthStore.getState();
+      await login(response.data.data, accessToken);
       await AsyncStorage.setItem("refreshToken", refreshToken);
     }
-
 
     return response;
   } catch (error) {

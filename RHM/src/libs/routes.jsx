@@ -10,8 +10,6 @@ import NotRequireAuth from "../layouts/NotRequireAuth";
 import { Dashboard } from "../screens/Dashboard";
 import { EmployeList } from "../screens/employe/Employe_list";
 import CreateEmploye from "../screens/employe/Employe_create";
-
-import ViewInformationEmploye from "../screens/employe/ViewInformationEmploye";
 import { EmployeTeam } from "../screens/employe/Employe_team";
 import { EmployeTask } from "../screens/employe/Employe_task";
 
@@ -83,11 +81,6 @@ export const router = createBrowserRouter([
           {
             path: "employees/:id",
             element: <ViewOneEmploye />,
-            children: [
-              {
-                element: <ViewInformationEmploye />,
-              },
-            ],
           },
 
           {
