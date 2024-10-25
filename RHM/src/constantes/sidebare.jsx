@@ -40,7 +40,7 @@ export const items = [
 
   getItem("Entreprise", "sub5", <IoMdBusiness />, null, [
     getItem("Département", "19", <IoIosBusiness />, "/company/departments"),
-    getItem("Partenaire", "20", <FaHandshake />, "/company/partner"),
+    getItem("Fournisseurs", "20", <FaHandshake />, "/company/partner"),
   ]),
 
   getItem("Stock", "sub6", <IoMdBusiness />, null, [

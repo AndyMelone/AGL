@@ -1,22 +1,32 @@
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate, useParams } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
 import useAuthStore from "../stores/store_auth";
 import { capitalizeFirstLetter } from "../helpers/capitalizeFirstLetter";
 import { CiMail } from "react-icons/ci";
-
+import { MdAnimation } from "react-icons/md";
 import { Popconfirm, Tooltip } from "antd";
 import { TiContacts } from "react-icons/ti";
 import { MdAccessTime } from "react-icons/md";
 import { CiFolderOn } from "react-icons/ci";
+import { getEmploye } from "../api/api_employe";
+import { useEffect } from "react";
 
 export default function ViewOneEmploye() {
   const navigate = useNavigate();
   const { user } = useAuthStore();
 
+  const { id } = useParams();
+
+  useEffect(() => {
+    getEmploye(id).then((data) => {
+      console.log(data);
+    });
+  }, [id]);
+
   return (
     <>
       <div
-        className="flex"
+        className="flex rounded-tl-3xl"
         style={{
           height: "calc(100vh - 88px)",
         }}
@@ -111,7 +121,37 @@ export default function ViewOneEmploye() {
                   </button>
                 </Popconfirm>
               </div>
-             
+
+              <div className="my-10 mx-5 space-y-2">
+                <div className="flex justify-between space-x-6">
+                  <div className="flex items-center space-x-1">
+                    <MdAnimation color="#fff" />
+                    <p className="font-light text-white">Matricule</p>
+                  </div>
+                  <p className="font-semibold text-white">1212BB12</p>
+                </div>
+                <div className="flex justify-between space-x-6">
+                  <div className="flex items-center space-x-1">
+                    <MdAnimation color="#fff" />
+                    <p className="font-light text-white">Matricule</p>
+                  </div>
+                  <p className="font-semibold text-white">1212BB12</p>
+                </div>
+                <div className="flex justify-between space-x-6">
+                  <div className="flex items-center space-x-1">
+                    <MdAnimation color="#fff" />
+                    <p className="font-light text-white">Matricule</p>
+                  </div>
+                  <p className="font-semibold text-white">1212BB12</p>
+                </div>
+                <div className="flex justify-between space-x-6">
+                  <div className="flex items-center space-x-1">
+                    <MdAnimation color="#fff" />
+                    <p className="font-light text-white">Matricule</p>
+                  </div>
+                  <p className="font-semibold text-white">1212BB12</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

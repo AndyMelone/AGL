@@ -81,10 +81,10 @@ export const router = createBrowserRouter([
             element: <CreateEmploye />,
           },
           {
+            path: "employees/:id",
             element: <ViewOneEmploye />,
             children: [
               {
-                path: "employees/:id",
                 element: <ViewInformationEmploye />,
               },
             ],

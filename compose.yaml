@@ -1,0 +1,28 @@
+services:
+  client:
+    build:
+      context: ./RHM
+    ports:
+      - 5173:5173
+    depends_on:
+      - server
+  server:
+    build:
+      context: ./RHM_SERVER
+    ports:
+      - 5000:5000
+    depends_on:
+      - db
+  db:
+    image: postgres
+    ports:
+      - 5433:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=DB_RHM
+    volumes:
+      - db:/var/lib/postgresql/data
+
+volumes:
+  db:
