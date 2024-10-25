@@ -11,13 +11,13 @@ export const seedCompany = async () => {
         data: {
           name: "Loutché",
           address: "Abidjan Youpougon magasin",
-          contactEmail: "Loutche@loutche.com",
+          contactEmail: "SmartMarket@SmartMarket.com",
           contactPhone: "0768101008",
           licenseType: "Basic",
           maxEmployees: 100,
           subscriptionStartDate: new Date().toISOString(),
           subscriptionEndDate: null,
-          website: "https://loutche-vercel.app",
+          website: "https://SmartMarket-vercel.app",
           logo: null,
         },
       });

@@ -488,7 +488,7 @@ export default function CreateEmployeDrawer({ open, onClose }) {
             name="hireDate"
           />
         </div>
-        
+
         <div className="w-full border py-2 rounded-xl">
           <Input.TextArea
             rows={3}

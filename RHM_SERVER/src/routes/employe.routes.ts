@@ -9,12 +9,12 @@ employeRouter.use(checkAuth);
 
 // POST REQUEST
 employeRouter.post("/", employe.createEmployee);
+employeRouter.post("/create-task", employe.createTask);
 
 // GET REQUEST
 employeRouter.get("/", employe.getEmployees);
 
 //DELETE REQUEST
 employeRouter.delete("/:id", employe.deleteEmployee);
-
 
 export default employeRouter;

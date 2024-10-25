@@ -364,3 +364,49 @@ export const login = async (req: Request, res: Response) => {
     });
   }
 };
+
+export const createTask = async (req: Request, res: Response) => {
+  const { title, description, employeeId, date, time } = req.body;
+
+  try {
+    if (!title || !employeeId) {
+      return res.json({
+        ok: false,
+        message: "Veuillez renseigner tous les champs obligatoires",
+        data: null,
+      });
+    }
+
+    const employee = await prisma.employee.findUnique({
+      where: { id: employeeId },
+    });
+
+    if (!employee) {
+      return res.status(404).json({ ok: false, message: "Employé non trouvé" });
+    }
+
+    const task = await prisma.task.create({
+      data: {
+        title: title,
+        description: description,
+        employee: { connect: { id: employeeId } },
+        dueDate: date,
+        dueTime: time,
+        createdBy: req.user.id,
+      },
+    });
+
+    return res.status(201).json({
+      ok: true,
+      message: "Task created successfully",
+      data: task,
+    });
+  } catch (error: any) {
+    console.log(error);
+    return res.status(500).json({
+      ok: false,
+      message: error.message,
+      data: null,
+    });
+  }
+};

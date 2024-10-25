@@ -1,6 +1,5 @@
 import api from "../libs/axios";
 
-
 export const getEmployes = async () => {
   try {
     const response = await api.get("/employe");
@@ -10,10 +9,9 @@ export const getEmployes = async () => {
   }
 };
 
-
 export const createEmploye = async ({
   flag,
-  comments, 
+  comments,
   firstName,
   lastName,
   dateOfBirth,
@@ -32,7 +30,7 @@ export const createEmploye = async ({
   emergencyContactlastName,
   emergencyContactEmail,
   emergencyContactAdress,
-  matricule
+  matricule,
 }) => {
   try {
     const response = await api.post("/employe", {
@@ -41,26 +39,26 @@ export const createEmploye = async ({
       lastName,
       dateOfBirth,
       placeOfBirth,
-      phoneNumber: phoneNumber || null, 
+      phoneNumber: phoneNumber || null,
       email,
       address,
       gender,
       departmentId,
       positionId,
       contractType,
-      salary: salary, 
+      salary: salary,
       socialSecurityNumber,
       emergencyContactName,
       emergencyContactPhone,
       emergencyContactlastName,
       emergencyContactEmail,
       emergencyContactAdress,
-      comments: comments, 
-      matricule
+      comments: comments,
+      matricule,
     });
     return response.data;
   } catch (error) {
-      return error.response?.data || error.message;
+    return error.response?.data || error.message;
   }
 };
 
@@ -71,7 +69,7 @@ export const getEmploye = async (id) => {
   } catch (error) {
     throw error.response?.data || error.message;
   }
-}
+};
 
 export const deleteEmploye = async (id) => {
   try {
@@ -80,4 +78,13 @@ export const deleteEmploye = async (id) => {
   } catch (error) {
     throw error.response?.data || error.message;
   }
-}
+};
+
+export const createTask = async (data) => {
+  try {
+    const response = await api.post(`/employe/create-task`, data);
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || error.message;
+  }
+};

@@ -1,14 +1,14 @@
 import {
   UserOutlined,
   HistoryOutlined,
-  CarryOutOutlined,
   AppstoreOutlined,
   SettingOutlined,
 } from "@ant-design/icons";
+import { FaUserAltSlash } from "react-icons/fa";
 import { RxDashboard } from "react-icons/rx";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { PiArrowsCounterClockwise } from "react-icons/pi";
-
+import { FcLeave } from "react-icons/fc";
 import { FaHandshake } from "react-icons/fa";
 import { IoMdBusiness } from "react-icons/io";
 import { IoIosBusiness } from "react-icons/io";
@@ -34,8 +34,8 @@ export const items = [
       <PiArrowsCounterClockwise />,
       "/employees/counter"
     ),
-    getItem("Congés", "6", <CarryOutOutlined />, "/absences/leave-request"),
-    getItem("Absences", "7", <CarryOutOutlined />, "/employees/absences"),
+    getItem("Absences", "6", <FaUserAltSlash />, "/employees/absences"),
+    getItem("Congés", "7", <FcLeave />, "/absences/leave-request"),
   ]),
 
   getItem("Entreprise", "sub5", <IoMdBusiness />, null, [

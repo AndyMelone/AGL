@@ -7,8 +7,7 @@ export const EmployeCounterLayout = () => {
     navigate("/employees/counter/" + view);
   };
   return (
-    <div className="">
-
+    <div className=" px-5 py-10">
       <div>
         <h1 className="text-2xl font-bold  xl ">Gestion des Présences</h1>
       </div>
@@ -44,7 +43,7 @@ export const EmployeCounterLayout = () => {
 
         <button onClick={() => handleChangeView("compteur-heure")}>
           <p
-          className={` 
+            className={` 
             ${
               location.pathname === "/employees/counter/compteur-heure/" ||
               location.pathname === "/employees/counter/compteur-heure"

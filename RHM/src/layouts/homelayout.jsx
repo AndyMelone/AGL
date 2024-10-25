@@ -15,7 +15,7 @@ import { IoMdNotificationsOutline } from "react-icons/io";
 import { IoCalendarOutline } from "react-icons/io5";
 import { dropDownMenuItems } from "../helpers/DropdonwAvatarList";
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Header, Footer, Sider } = Layout;
 
 const HomeLayout = () => {
   const [collapsed, setCollapsed] = useState(true);
@@ -105,7 +105,7 @@ const HomeLayout = () => {
             }}
             className="flex items-center px-4"
           >
-            <p className="font-medium text-base text-gray-500">LOUTCHE</p>
+            <p className="font-medium text-base text-gray-500">SmartMarket</p>
 
             <div className="ml-auto flex items-center gap-5 mx-10">
               <p className="text-blue-950">Aide</p>

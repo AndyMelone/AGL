@@ -17,8 +17,8 @@ app.use(
     origin: [
       "http://localhost:5173",
       "https://rhm.vercel.app",
-      "https://rhm-melones-projects.vercel.app",
-      "https://rhm-fnmxkmq78-melones-projects.vercel.app",
+      "https://melones-projects.vercel.app",
+      "https://fnmxkmq78-melones-projects.vercel.app",
     ],
     credentials: true,
   })
@@ -27,7 +27,6 @@ app.use(
 async function startServer() {
   try {
     await seedCompany();
-
   } catch (error) {
     console.error("Error starting the server:", error);
     process.exit(1);
