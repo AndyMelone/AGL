@@ -4,4 +4,4 @@ WORKDIR /app
 COPY package*.json .
 RUN npm install --frozen-lockfile
 COPY . .
-CMD npx prisma db push && npm run start:dev
+CMD npx prisma db push && npm run start

@@ -2,8 +2,10 @@ import { Router } from "express";
 import * as stocks from "../controllers/stocks.controllers";
 import { checkAuth } from "../middlewares/auth.middlewares";
 
-const stocksRoutes: Router = Router();
+const router: Router = Router();
 
-// stocksRoutes.use(checkAuth);
+router.use(checkAuth);
 
-export default stocksRoutes;
+router.get("/", stocks.getStocks);
+
+export default router;

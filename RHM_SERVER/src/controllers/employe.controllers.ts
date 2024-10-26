@@ -1,11 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Request, Response } from "express";
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "../lib/prisma";
 import { compare, hash } from "bcrypt";
 import { createBothTokens } from "../utils/auth.utils";
-
-const prisma = new PrismaClient();
 
 export const createEmployee = async (req: Request, res: Response) => {
   const {
