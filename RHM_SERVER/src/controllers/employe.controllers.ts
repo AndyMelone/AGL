@@ -32,7 +32,6 @@ export const createEmployee = async (req: Request, res: Response) => {
     emergencyContactAdress,
     admin,
   } = req.body;
-  console.log("ok");
   try {
     if (!firstName || !lastName || !dateOfBirth || !gender) {
       return res.json({
@@ -245,7 +244,6 @@ export const deleteEmployee = async (req: Request, res: Response) => {
 
 export const login = async (req: Request, res: Response) => {
   const { pseudo, password, matricule } = req.body;
-  console.log("req.body", req.body);
   try {
     if ((!pseudo || !password) && !matricule) {
       return res.json({
@@ -416,7 +414,6 @@ export const createTask = async (req: Request, res: Response) => {
 
 export const getEmployeeById = async (req: Request, res: Response) => {
   const { id } = req.params;
-
   try {
     if (!id) {
       return res.json({
@@ -458,6 +455,42 @@ export const getEmployeeById = async (req: Request, res: Response) => {
       ok: true,
       message: "Employee fetched successfully",
       data: employee,
+    });
+  } catch (error: any) {
+    console.log(error);
+    return res.status(500).json({
+      ok: false,
+      message: error.message,
+      data: null,
+    });
+  }
+};
+
+export const getEmployetask = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  console.log(id);
+  try {
+    if (!id) {
+      return res.json({
+        ok: false,
+        message: "Veuillez renseigner l'identifiant de l'employé",
+        data: null,
+      });
+    }
+
+    const tasks = await prisma.task.findMany({
+      where: {
+        employeeId: id,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+
+    return res.status(200).json({
+      ok: true,
+      message: "Employee tasks fetched successfully",
+      data: tasks,
     });
   } catch (error: any) {
     console.log(error);

@@ -26,7 +26,7 @@ export const EmployeCounterLayout = () => {
             Feuille de présence
           </p>
         </button>
-        <button onClick={() => handleChangeView("pointage")}>
+        {/* <button onClick={() => handleChangeView("pointage")}>
           <p
             className={` 
               ${
@@ -39,7 +39,7 @@ export const EmployeCounterLayout = () => {
           >
             Registre de pointage
           </p>
-        </button>
+        </button> */}
 
         <button onClick={() => handleChangeView("compteur-heure")}>
           <p

@@ -16,19 +16,21 @@ import {
   Space,
 } from "antd";
 
-import  useDepartmentStore  from "../../stores/store_departement";
-import { createDepartement, deleteDepartement } from "../../api/api_departement";
+import useDepartmentStore from "../../stores/store_departement";
+import {
+  createDepartement,
+  deleteDepartement,
+} from "../../api/api_departement";
 import useEmployeStore from "../../stores/store_employe";
 import { defaultColDef } from "../../constantes/gridText";
 
-
 export const Departments = () => {
   const navigate = useNavigate();
-  const { departments, loadDepartments,removeDepartment  } = useDepartmentStore();
+  const { departments, loadDepartments, removeDepartment } =
+    useDepartmentStore();
   const { employees, loadEmployees } = useEmployeStore();
 
   const [employe, setEmploye] = useState([]);
-
 
   useEffect(() => {
     loadEmployees();
@@ -136,8 +138,6 @@ export const Departments = () => {
     },
   ]);
 
-
-
   const showModal = () => {
     setIsModalVisible(true);
   };
@@ -190,13 +190,16 @@ export const Departments = () => {
           <p>Voici la liste des départements au sein de notre entreprise.</p>
         </div>
         <div>
-          <Button type="primary" size="large" onClick={showModal}>
+          <button
+            className=" py-3 px-4 rounded-2xl bg-[#E89D85] font-light"
+            onClick={showModal}
+          >
             Nouveau Département
-          </Button>
+          </button>
         </div>
       </div>
       <div className="ag-theme-quartz" style={{ height: "70vh" }}>
-      <AgGridReact
+        <AgGridReact
           pagination={true}
           rowData={rowData}
           columnDefs={colDefs}
@@ -210,11 +213,17 @@ export const Departments = () => {
         title="Créer un Nouveau département"
         open={isModalVisible}
         onCancel={handleCancel}
+        width={800}
         footer={[
           <Button key="back" onClick={handleCancel}>
             Annuler
           </Button>,
-          <Button key="submit" type="primary" onClick={handleSubmit}>
+          <Button
+            key="submit"
+            type="primary"
+            onClick={handleSubmit}
+            className="bg-[#E89D85]"
+          >
             Soumettre
           </Button>,
         ]}
@@ -229,7 +238,7 @@ export const Departments = () => {
           }}
           autoComplete="off"
         >
-          <div className="flex w-full space-x-4 items-center justify-center mx-auto">
+          <div className="flex w-full space-x-4 items-center justify-center mx-auto ">
             <Form.Item
               label="Nom du département"
               name="departmentName"
@@ -245,11 +254,13 @@ export const Departments = () => {
             </Form.Item>
 
             <Form.Item label="Manager" name="managerName" className="w-full">
-              <Select showSearch placeholder="Sélectionner le manager" 
-               options={employe.map((dept) => ({
-                value: dept.id,
-                label: dept.firstName + " " + dept.lastName,
-              }))}
+              <Select
+                showSearch
+                placeholder="Sélectionner le manager"
+                options={employe.map((dept) => ({
+                  value: dept.id,
+                  label: dept.firstName + " " + dept.lastName,
+                }))}
               />
             </Form.Item>
           </div>

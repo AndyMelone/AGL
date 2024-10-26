@@ -15,7 +15,6 @@ export const loginApi = async (
   password: string
 ): Promise<AxiosResponse<Tokens>> => {
   try {
-    console.log("Login API");
     const response: AxiosResponse<Tokens> = await api.post("/auth/login", {
       matricule,
       password,

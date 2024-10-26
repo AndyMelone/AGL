@@ -10,7 +10,6 @@ const Tab = createBottomTabNavigator();
 
 const Stack = createNativeStackNavigator();
 
-
 const screenOptions = {
   tabBarShowLabel: false,
   headerShown: false,
@@ -55,14 +54,14 @@ const TabNavigator = () => (
         tabBarIcon: ({ focused }) => (
           <View style={{ alignItems: "center", justifyContent: "center" }}>
             <AntDesign
-              name="qrcode"
+              name="book"
               size={24}
               color={focused ? "#307BF6" : "black"}
             />
             <Text
               style={{ color: focused ? "#307BF6" : "#748c94", fontSize: 12 }}
             >
-              Scanner
+              Tasks
             </Text>
           </View>
         ),

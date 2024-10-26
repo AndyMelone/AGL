@@ -4,6 +4,7 @@ import {
   NativeStackNavigationOptions,
 } from "@react-navigation/native-stack";
 import Login from "../screens/Login";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import TabNavigator from "./TabNavigator";
 import { Ionicons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native";
@@ -12,8 +13,7 @@ import QrCode from "../screens/QRcode";
 type RootStackParamList = {
   Acceuil: undefined;
   Login: undefined;
-  ScanQr: undefined;
-
+  Taches: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -48,7 +48,7 @@ const MainStackNavigator = () => (
     />
 
     <Stack.Screen
-      name="ScanQr"
+      name="Taches"
       component={QrCode}
       options={{ headerShown: false }}
     />
