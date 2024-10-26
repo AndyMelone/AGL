@@ -25,8 +25,6 @@ export default function CreateTeamDrawer({ open, onClose }) {
     description: "",
   });
 
-
-
   return (
     <Drawer
       width={520}
@@ -78,7 +76,8 @@ export default function CreateTeamDrawer({ open, onClose }) {
       <div className="flex justify-start items-center gap-1 py-2  px-2 rounded-lg my-4 bg-[#ecf1fd] mb-12">
         <CiCircleAlert size={18} />
         <p className="text-sm font-thin">
-          Veuillez spécifier le nom de la nouvelle equipe que vous souhaitez créer
+          Veuillez spécifier le nom de la nouvelle equipe que vous souhaitez
+          créer
         </p>
       </div>
 

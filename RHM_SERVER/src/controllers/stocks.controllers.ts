@@ -1,6 +1,26 @@
 import { Request, Response } from "express";
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "../lib/prisma";
 
-const prisma = new PrismaClient();
+export const getStocks = async (req: Request, res: Response) => {
+  try {
+    const stocks = await prisma.product.findMany({
+      where: {
+        quantity: {
+          gt: 0,
+        },
+      },
+    });
 
-// create your controller functions here
+    res.status(200).json({
+      ok: true,
+      message: "Stocks fetched successfully",
+      data: stocks,
+    });
+  } catch (e: any) {
+    res.status(500).json({
+      ok: false,
+      message: e.message,
+      data: null,
+    });
+  }
+};

@@ -1,9 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Request, Response } from "express";
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "../lib/prisma";
 import { hash } from "bcrypt";
-
-const prisma = new PrismaClient();
 
 export const createCompany = async (req: Request, res: Response) => {
   const {
