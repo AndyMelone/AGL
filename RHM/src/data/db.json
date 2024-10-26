@@ -1,0 +1,264 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "label": "Fruits",
+      "products": [
+        {
+          "id": 1,
+          "name": "Banane",
+          "price": 200,
+          "description": "Banane douce de Côte d'Ivoire, riche en potassium",
+          "quantity": 10
+        },
+        {
+          "id": 2,
+          "name": "Pomme",
+          "price": 150,
+          "description": "Pomme croquante de Côte d'Ivoire, pleine de vitamines",
+          "quantity": 0
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "label": "Légumes",
+      "products": [
+        {
+          "id": 5,
+          "name": "Carotte",
+          "price": 100,
+          "description": "Carotte fraîche de Côte d'Ivoire, riche en bêta-carotène",
+          "quantity": 510
+        },
+        {
+          "id": 6,
+          "name": "Tomate",
+          "price": 200,
+          "description": "Tomate juteuse de Côte d'Ivoire, parfaite pour les salades",
+          "quantity": 1002
+        },
+        {
+          "id": 7,
+          "name": "Salade",
+          "price": 150,
+          "description": "Salade verte de Côte d'Ivoire, croquante et fraîche",
+          "quantity": 120
+        },
+        {
+          "id": 8,
+          "name": "Concombre",
+          "price": 200,
+          "description": "Concombre rafraîchissant de Côte d'Ivoire, idéal pour l'été",
+          "quantity": 0
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "label": "Viandes",
+      "products": [
+        {
+          "id": 9,
+          "name": "Poulet",
+          "price": 2000,
+          "description": "Poulet fermier de Côte d'Ivoire, tendre et savoureux",
+          "quantity": 29
+        },
+        {
+          "id": 10,
+          "name": "Boeuf",
+          "price": 1500,
+          "description": "Boeuf de Côte d'Ivoire, juteux et riche en protéines",
+          "quantity": 12
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "label": "Poissons",
+      "products": [
+        {
+          "id": 11,
+          "name": "Saumon",
+          "price": 2000,
+          "description": "Saumon frais de Côte d'Ivoire, riche en oméga-3",
+          "quantity": 0
+        },
+        {
+          "id": 12,
+          "name": "Cabillaud",
+          "price": 1500,
+          "description": "Cabillaud de Côte d'Ivoire, parfait pour les plats de poisson",
+          "quantity": 0
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "label": "Produits laitiers",
+      "products": [
+        {
+          "id": 13,
+          "name": "Lait",
+          "price": 200,
+          "description": "Lait frais de Côte d'Ivoire, riche en calcium",
+          "quantity": 0
+        },
+        {
+          "id": 14,
+          "name": "Yaourt",
+          "price": 150,
+          "description": "Yaourt crémeux de Côte d'Ivoire, parfait pour le petit-déjeuner",
+          "quantity": 19
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "label": "Epicerie",
+      "products": [
+        {
+          "id": 15,
+          "name": "Riz",
+          "price": 200,
+          "description": "Riz Tailandais, parfait pour les plats de riz",
+          "quantity": 100
+        },
+        {
+          "id": 16,
+          "name": "Pâtes",
+          "price": 150,
+          "description": "Pâtes de Côte d'Ivoire, parfaites pour les plats de pâtes",
+          "quantity": 129
+        },
+        {
+          "id": 17,
+          "name": "Huile",
+          "price": 200,
+          "description": "Huile de palme de Côte d'Ivoire, idéale pour la cuisine",
+          "quantity": 0
+        },
+        {
+          "id": 18,
+          "name": "Sucre",
+          "price": 150,
+          "description": "Sucre de Côte d'Ivoire, parfait pour les desserts",
+          "quantity": 60
+        }
+      ]
+    }
+  ],
+  "orders": [
+    {
+      "id": 1,
+      "supplierId": 1,
+      "supplier": "Fournisseur Abidjan",
+      "date": "01-09-2024",
+      "amount": 1000,
+      "status": "pending",
+      "products": [
+        {
+          "id": 1,
+          "name": "Banane",
+          "price": 200,
+          "quantity": 5
+        },
+        {
+          "id": 5,
+          "name": "Carotte",
+          "price": 100,
+          "quantity": 5
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "supplierId": 2,
+      "supplier": "Fournisseur Yamoussoukro",
+      "date": "02-09-2024",
+      "amount": 2000,
+      "status": "pending",
+      "products": [
+        {
+          "id": 6,
+          "name": "Tomate",
+          "price": 200,
+          "quantity": 10
+        },
+        {
+          "id": 7,
+          "name": "Salade",
+          "price": 150,
+          "quantity": 10
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "supplierId": 3,
+      "supplier": "Fournisseur Bouaké",
+      "date": "03-09-2024",
+      "amount": 3500,
+      "status": "pending",
+      "products": [
+        {
+          "id": 9,
+          "name": "Poulet",
+          "price": 2000,
+          "quantity": 1
+        },
+        {
+          "id": 10,
+          "name": "Boeuf",
+          "price": 1500,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "supplierId": 4,
+      "supplier": "Fournisseur San Pedro",
+      "date": "04-09-2024",
+      "amount": 3500,
+      "status": "pending",
+      "products": [
+        {
+          "id": 11,
+          "name": "Saumon",
+          "price": 2000,
+          "quantity": 1
+        },
+        {
+          "id": 12,
+          "name": "Cabillaud",
+          "price": 1500,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "supplierId": 5,
+      "supplier": "Fournisseur Korhogo",
+      "date": "05-09-2024",
+      "amount": 3500,
+      "status": "pending",
+      "products": [
+        {
+          "id": 13,
+          "name": "Lait",
+          "price": 200,
+          "quantity": 1
+        },
+        {
+          "id": 14,
+          "name": "Yaourt",
+          "price": 150,
+          "quantity": 1
+        }
+      ]
+    }
+  ]
+}

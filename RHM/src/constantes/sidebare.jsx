@@ -45,9 +45,13 @@ export const items = [
 
   getItem("Stock", "sub6", <IoMdBusiness />, null, [
     getItem("Vue d'ensemble", "21", <AppstoreOutlined />, "/stock/overview"),
-    getItem("Produits", "22", <IoIosBusiness />, "/stock/products"),
-    getItem("Commande", "23", <IoIosBusiness />, "/stock/order"),
-    getItem("Reglage", "24", <SettingOutlined />, "/stock/adjustment"),
+    getItem(
+      "Catégories de produit",
+      "22",
+      <IoIosBusiness />,
+      "/stock/product-types"
+    ),
+    getItem("Commandes", "23", <IoIosBusiness />, "/stock/orders"),
   ]),
 
   getItem("Caise", "sub7", <IoMdBusiness />, null, [

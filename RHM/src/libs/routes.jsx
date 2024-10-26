@@ -5,7 +5,6 @@ import HomeLayout from "../layouts/homelayout";
 import EmployeLayout from "../layouts/EmployeLayout";
 import RequireAuth from "../layouts/RequireAuth";
 import NotRequireAuth from "../layouts/NotRequireAuth";
-import { StockLayout } from "../layouts/StockLayout";
 
 // Screens
 import { Dashboard } from "../screens/Dashboard";
@@ -41,6 +40,8 @@ import PaieFicheLayout from "../layouts/PaieFicheLayout";
 import ViewOneEmploye from "../layouts/ViewOneEmploye";
 import Not_found from "../screens/Not_found";
 import { OverviewScreen } from "../screens/stock/Overview";
+import { ProductTypeScreen } from "../screens/stock/ProductTypes";
+import { OrdersScreens } from "../screens/stock/Orders";
 
 export const router = createBrowserRouter([
   {
@@ -208,6 +209,14 @@ export const router = createBrowserRouter([
           {
             path: "stock/overview",
             element: <OverviewScreen />,
+          },
+          {
+            path: "stock/product-types",
+            element: <ProductTypeScreen />,
+          },
+          {
+            path: "stock/orders",
+            element: <OrdersScreens />,
           },
           // other routes error
           {
